@@ -19,15 +19,12 @@ public class MainController {
 
     @PostMapping("/exchanges")
     public ResponseEntity<Exchanges> createExchange(@RequestBody Exchanges exchange) {
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Access-Control-Allow-Origin", "http://fastexchange365.com");
-        responseHeaders.set("Access-Control-Allow-Methods", "GET, POST, OPTION");
         try {
             Exchanges _tutorial = exchangeRepository
                     .save(new Exchanges(exchange.getSelectedCryptocoin1(), exchange.getSum1(), exchange.getSelectedCryptocoin2(), exchange.getSum2(), exchange.getEmail(), exchange.getAddress(), LocalDateTime.now()));
-            return new ResponseEntity<>(_tutorial, responseHeaders, HttpStatus.CREATED);
+            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

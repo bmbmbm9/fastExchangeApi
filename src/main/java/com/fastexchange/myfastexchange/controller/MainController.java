@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
-@CrossOrigin(origins = "http://fastexchange365.com")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class MainController {
